@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-02-27T22:26:00Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="hZ_qT5E2nwJ3BQ6n0c0H" version="23.1.9" type="device">
+  <diagram id="hexad_architecture" name="六元组架构图">
+    <mxGraphModel dx="1554" dy="946" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1400" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lbl_user" value="用户层" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="40" y="90" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_entry" value="出入口层 (Entry Points)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="40" y="270" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_routing" value="路由层 (Routing)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="40" y="450" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_channels" value="频道层 (Channels)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="40" y="630" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_skills" value="技能层 (Skills)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="40" y="810" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_memory" value="记忆层 (Memory)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="40" y="990" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_sandbox" value="沙箱层 (Sandbox)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="40" y="1170" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_ai" value="AI Provider层" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="40" y="1350" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_return" value="返回路径" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="40" y="1530" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="layer_user" value="用户请求入口" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;verticalAlign=top;align=center;spacingTop=10;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="40" width="1120" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="user_whatsapp" value="WhatsApp用户" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_user" vertex="1">
+          <mxGeometry x="200" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="user_wecom" value="企业微信用户" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_user" vertex="1">
+          <mxGeometry x="485" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="user_web" value="Web用户" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_user" vertex="1">
+          <mxGeometry x="770" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="layer_entry" value="出入口层：协议转换与标准化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;verticalAlign=top;align=center;spacingTop=10;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="220" width="1120" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="entry_whatsapp" value="WhatsApp适配器" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_entry" vertex="1">
+          <mxGeometry x="180" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="entry_wecom" value="企业微信适配器" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_entry" vertex="1">
+          <mxGeometry x="465" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="entry_web" value="Web Widget适配器" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_entry" vertex="1">
+          <mxGeometry x="750" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="layer_routing" value="路由层：7级匹配规则引擎" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;verticalAlign=top;align=center;spacingTop=10;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="400" width="1120" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="routing_engine" value="路由引擎" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_routing" vertex="1">
+          <mxGeometry x="200" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="routing_rules" value="7级匹配规则" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_routing" vertex="1">
+          <mxGeometry x="485" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="routing_config" value="动态配置" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_routing" vertex="1">
+          <mxGeometry x="770" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="layer_channels" value="频道层：上下文隔离容器" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;verticalAlign=top;align=center;spacingTop=10;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="580" width="1130" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="agent_general" value="通用客服&#10;Agent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=12;fontStyle=1;" parent="layer_channels" vertex="1">
+          <mxGeometry x="120" y="60" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="agent_vip" value="VIP专属&#10;Agent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=12;fontStyle=1;" parent="layer_channels" vertex="1">
+          <mxGeometry x="380" y="60" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="agent_pricing" value="智能报价&#10;Agent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=12;fontStyle=1;" parent="layer_channels" vertex="1">
+          <mxGeometry x="640" y="60" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="agent_technical" value="技术支持&#10;Agent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=12;fontStyle=1;" parent="layer_channels" vertex="1">
+          <mxGeometry x="900" y="60" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="layer_skills" value="技能层：声明式能力单元" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;verticalAlign=top;align=center;spacingTop=10;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="900" width="1130" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="skill_order" value="订单查询&#10;Skill" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;fontSize=12;fontStyle=1;" parent="layer_skills" vertex="1">
+          <mxGeometry x="120" y="40" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="skill_pricing" value="动态报价&#10;Skill" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;fontSize=12;fontStyle=1;" parent="layer_skills" vertex="1">
+          <mxGeometry x="380" y="40" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="skill_kb" value="知识库检索&#10;Skill" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;fontSize=12;fontStyle=1;" parent="layer_skills" vertex="1">
+          <mxGeometry x="640" y="40" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="skill_ticket" value="工单创建&#10;Skill" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;fontSize=12;fontStyle=1;" parent="layer_skills" vertex="1">
+          <mxGeometry x="900" y="40" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="layer_memory" value="记忆层：持久化知识管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;verticalAlign=top;align=center;spacingTop=10;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="1080" width="1120" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="memory_compaction" value="Compaction&#10;(压缩)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_memory" vertex="1">
+          <mxGeometry x="200" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="memory_pruning" value="Session Pruning&#10;(修剪)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_memory" vertex="1">
+          <mxGeometry x="485" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="memory_sidecar" value="Memory Sidecar&#10;(向量存储)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_memory" vertex="1">
+          <mxGeometry x="770" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="layer_sandbox" value="沙箱层：安全隔离机制" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;verticalAlign=top;align=center;spacingTop=10;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="1260" width="1120" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="sandbox_mode" value="Sandbox Mode&#10;(容器隔离)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_sandbox" vertex="1">
+          <mxGeometry x="200" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="sandbox_policy" value="Tools Policy&#10;(7层过滤链)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_sandbox" vertex="1">
+          <mxGeometry x="485" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="sandbox_elevated" value="Elevated Mode&#10;(权限提升)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_sandbox" vertex="1">
+          <mxGeometry x="770" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="layer_ai" value="AI Provider层：模型调用" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;verticalAlign=top;align=center;spacingTop=10;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="1440" width="1120" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="ai_anthropic" value="Anthropic&#10;Claude系列" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_ai" vertex="1">
+          <mxGeometry x="200" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ai_openai" value="OpenAI&#10;GPT系列" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_ai" vertex="1">
+          <mxGeometry x="485" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ai_ollama" value="Ollama&#10;本地模型" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;" parent="layer_ai" vertex="1">
+          <mxGeometry x="770" y="60" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="layer_return" value="返回路径：结果返回用户" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;verticalAlign=top;align=center;spacingTop=10;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="1620" width="1120" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_user_entry" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6c8ebf;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" edge="1" source="layer_user" target="layer_entry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_entry_routing" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6c8ebf;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" edge="1" source="layer_entry" target="layer_routing">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_routing_channels" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6c8ebf;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" edge="1" source="layer_routing" target="layer_channels">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_channels_skills" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6c8ebf;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" edge="1" source="layer_channels" target="layer_skills">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_skills_memory" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6c8ebf;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" edge="1" source="layer_skills" target="layer_memory">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_memory_sandbox" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6c8ebf;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" edge="1" source="layer_memory" target="layer_sandbox">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_sandbox_ai" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6c8ebf;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" edge="1" source="layer_sandbox" target="layer_ai">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_ai_return" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6c8ebf;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" edge="1" source="layer_ai" target="layer_return">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_example" value="企业级智能客服系统示例" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="40" y="1280" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="layer_example" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="260" y="1830" width="1100" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="example_agents" value="4个Agent&#10;通用客服、VIP专属、智能报价、技术支持" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;fontStyle=1;" parent="layer_example" vertex="1">
+          <mxGeometry x="60" y="40" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="example_skills" value="4个Skill&#10;订单查询、动态报价、知识库检索、工单创建" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;fontStyle=1;" parent="layer_example" vertex="1">
+          <mxGeometry x="380" y="40" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="example_routing" value="7级匹配规则&#10;peer→metadata→keywords→semantic→guild→channel→default" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=12;fontStyle=1;" parent="layer_example" vertex="1">
+          <mxGeometry x="700" y="40" width="280" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,45 @@
+{
+  "name": "hexacore",
+  "version": "1.0.0",
+  "description": "HexaCore - A Production-Grade Agent Platform based on HexaCore",
+  "main": "dist/index.js",
+  "scripts": {
+    "init:supabase": "node scripts/init-supabase.js",
+    "dev:db": "docker-compose up -d",
+    "stop:db": "docker-compose down",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "agent",
+    "ai",
+    "HexaCore",
+    "hexacore",
+    "supabase"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.40.0",
+    "@types/ws": "^8.18.1",
+    "adm-zip": "^0.5.12",
+    "axios": "^1.13.6",
+    "dotenv": "^16.6.1",
+    "fastify": "^4.26.2",
+    "openai": "^6.25.0",
+    "pg": "^8.11.3",
+    "redis": "^4.6.13",
+    "ws": "^8.19.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.24",
+    "@types/pg": "^8.11.2",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.0"
+  }
+}

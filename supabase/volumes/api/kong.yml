@@ -1,0 +1,65 @@
+_format_version: "2.1"
+
+services:
+- name: rest-v1
+  url: http://supabase-rest:3000/
+  routes:
+  - name: rest-v1-route
+    paths:
+    - /rest/v1/
+    strip_path: true
+
+- name: auth-v1
+  url: http://supabase-auth:9999/
+  routes:
+  - name: auth-v1-route
+    paths:
+    - /auth/v1/
+    strip_path: true
+
+- name: storage-v1
+  url: http://supabase-storage:5000/
+  routes:
+  - name: storage-v1-route
+    paths:
+    - /storage/v1/
+    strip_path: true
+
+- name: realtime-v1
+  url: http://supabase-realtime:4000/
+  routes:
+  - name: realtime-v1-route
+    paths:
+    - /realtime/v1/
+    strip_path: true
+
+plugins:
+- name: cors
+  config:
+    origins:
+    - "*"
+    methods:
+    - GET
+    - HEAD
+    - PUT
+    - PATCH
+    - POST
+    - DELETE
+    - OPTIONS
+    headers:
+    - Authorization
+    - apikey
+    - Content-Type
+    - Prefer
+    - Range
+    - x-supabase-api-version
+    - x-client-info
+    - accept-profile
+    exposed_headers:
+    - Content-Range
+    - Accept
+    - Content-Length
+    - Content-Range
+    - Range
+    max_age: 3600
+    preflight_continue: false

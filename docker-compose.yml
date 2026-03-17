@@ -1,0 +1,187 @@
+version: '3.8'
+
+services:
+  # HexaCore Gateway (Mock for local dev if image not available, or build from local)
+  # In actual dev, we might run this outside docker or use a dev image
+  gateway:
+    # image: hexacore/gateway:2.0.0
+    build: .
+    container_name: hexacore-gateway
+    ports:
+      - "18789:18789"
+      - "8080:8080"
+    environment:
+      - NODE_ENV=development
+      - SUPABASE_URL=http://kong:8000
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - supabase-db
+      - redis
+    # For local dev, keep it running
+    command: tail -f /dev/null
+
+  # Redis Cache & Queue
+  redis:
+    image: redis:7.2-alpine
+    container_name: hexacore-redis
+    ports:
+      - "6379:6379"
+
+  # Supabase Components
+  supabase-db:
+    image: supabase/postgres:15.1.0.147
+    container_name: supabase-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./supabase/volumes/db/data:/var/lib/postgresql/data
+      - ./supabase/migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  supabase-auth:
+    image: supabase/gotrue:v2.158.1
+    container_name: supabase-auth
+    ports:
+      - "9999:9999"
+    environment:
+      GOTRUE_API_HOST: 0.0.0.0
+      GOTRUE_API_PORT: 9999
+      API_EXTERNAL_URL: http://localhost:8000/auth/v1
+      GOTRUE_DB_DRIVER: postgres
+      GOTRUE_DB_DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@supabase-db:5432/postgres
+      GOTRUE_SITE_URL: http://localhost:3000
+      GOTRUE_URI_ALLOW_LIST: "*"
+      GOTRUE_JWT_SECRET: ${JWT_SECRET}
+      GOTRUE_JWT_EXP: 3600
+      GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
+      GOTRUE_JWT_ADMIN_GROUP_NAME: admin
+      GOTRUE_JWT_ADMIN_ROLES: service_role
+      GOTRUE_EXTERNAL_EMAIL_ENABLED: "true"
+      GOTRUE_MAILER_AUTOCONFIRM: "true"
+      GOTRUE_SMTP_ADMIN_EMAIL: admin@example.com
+      GOTRUE_SMTP_HOST: supabase-mail
+      GOTRUE_SMTP_PORT: 2500
+      GOTRUE_SMTP_USER: fake_mail_user
+      GOTRUE_SMTP_PASS: fake_mail_password
+      GOTRUE_SMTP_SENDER_NAME: Admin
+      # GOTRUE_DB_MIGRATIONS_PATH: ""
+    depends_on:
+      - supabase-db
+      - supabase-mail
+
+  supabase-mail:
+    image: inbucket/inbucket:3.0.3
+    container_name: supabase-mail
+    ports:
+      - "2500:2500" # SMTP
+      - "9000:9000" # Web UI
+
+  supabase-rest:
+    image: postgrest/postgrest:v10.0.0
+    container_name: supabase-rest
+    ports:
+      - "3000:3000"
+    environment:
+      PGRST_DB_URI: postgres://postgres:${POSTGRES_PASSWORD}@supabase-db:5432/postgres
+      PGRST_DB_SCHEMAS: public,storage
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_JWT_SECRET: ${JWT_SECRET}
+      PGRST_APP_SETTINGS_JWT_SECRET: ${JWT_SECRET}
+      PGRST_APP_SETTINGS_JWT_EXP: 3600
+    depends_on:
+      - supabase-db
+
+  supabase-realtime:
+    image: supabase/realtime:v2.25.22
+    container_name: supabase-realtime
+    ports:
+      - "4000:4000"
+    environment:
+      DB_HOST: supabase-db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: postgres
+      PORT: 4000
+      SLOT_NAME: supabase_realtime_rls
+      TEMPORARY_SLOT: "true"
+      JWT_SECRET: ${JWT_SECRET}
+      API_JWT_SECRET: ${JWT_SECRET}
+      SECRET_KEY_BASE: ${JWT_SECRET}
+      ERL_CRASH_DUMP: /dev/null
+      APP_NAME: realtime
+      FLY_APP_NAME: realtime
+      REPLACE_OS_VARS: "true"
+      REALTIME_DB_MIGRATIONS_PATH: ""
+      # Disable clustering for local dev
+      ERL_AFLAGS: "-proto_dist inet_tcp"
+    depends_on:
+      - supabase-db
+
+  supabase-storage:
+    image: supabase/storage-api:v0.40.4
+    container_name: supabase-storage
+    ports:
+      - "5000:5000"
+    environment:
+      ANON_KEY: ${SUPABASE_ANON_KEY}
+      SERVICE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}
+      POSTGRST_PROTOCOL: http
+      POSTGRST_HOST: supabase-rest
+      POSTGRST_PORT: 3000
+      PGRST_JWT_SECRET: ${JWT_SECRET}
+      DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@supabase-db:5432/postgres
+      FILE_SIZE_LIMIT: 52428800
+      STORAGE_BACKEND: file
+      FILE_STORAGE_BACKEND_PATH: /var/lib/storage
+      TENANT_ID: stub
+      REGION: stub
+      GLOBAL_S3_BUCKET: stub
+      ENABLE_IMAGE_TRANSFORMATION: "false"
+      STORAGE_DB_MIGRATIONS_PATH: ""
+    volumes:
+      - ./supabase/volumes/storage:/var/lib/storage
+    depends_on:
+      - supabase-db
+      - supabase-rest
+
+  # API Gateway (Kong)
+  kong:
+    image: kong:2.8.1
+    container_name: supabase-kong
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+    environment:
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: /var/lib/kong/kong.yml
+      # KONG_DNS_ORDER: LAST,A,CNAME
+      # KONG_PLUGINS: bundled
+    volumes:
+      - ./supabase/volumes/api/kong.yml:/var/lib/kong/kong.yml
+    depends_on:
+      - supabase-rest
+      - supabase-realtime
+      - supabase-storage
+
+  # Web Dashboard
+  web-dashboard:
+    build: 
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: hexacore-web
+    ports:
+      - "3001:3000"
+    environment:
+      - NEXT_PUBLIC_SUPABASE_URL=http://localhost:8000
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+    depends_on:
+      - kong

@@ -1,0 +1,8 @@
+{
+  "registry-mirrors": [],
+  "proxies": {
+    "http-proxy": "http://127.0.0.1:10809",
+    "https-proxy": "http://127.0.0.1:10809",
+    "no-proxy": "localhost,127.0.0.1,::1"
+  }
+}
