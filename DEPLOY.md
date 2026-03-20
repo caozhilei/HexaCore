@@ -34,21 +34,21 @@ cp .env.example .env.local
 - `DEEPSEEK_API_KEY`: DeepSeek API 密钥 (如果使用 DeepSeek)
 - `QWEN_API_KEY`: 通义千问 API 密钥 (如果使用 Qwen)
 
-### 3. 启动基础服务 (Supabase)
+### 3. 启动基础服务与全栈应用
 
-使用 Docker Compose 启动数据库、网关等基础服务：
+使用 Docker Compose 启动数据库、HexaCore 后端网关、Redis 缓存以及 Next.js Web 管理后台：
 
 ```bash
-docker-compose up -d
+docker-compose up -d --build
 ```
 
-等待服务启动完全（约 1-2 分钟）。可以通过以下命令检查状态：
+等待服务启动完全（由于需要构建前端应用和后端网关，可能需要几分钟时间）。可以通过以下命令检查状态：
 
 ```bash
 docker-compose ps
 ```
 
-确保所有服务（尤其是 `supabase-db`, `supabase-auth`, `supabase-rest`）均处于 `Up (healthy)` 状态。
+确保所有服务（尤其是 `supabase-db`, `supabase-auth`, `hexacore-gateway`, `hexacore-web`）均处于运行状态。
 
 ### 4. 初始化数据库
 
@@ -63,13 +63,14 @@ npm run init:supabase
 
 ### 5. 验证安装
 
-运行测试脚本验证核心流程是否正常：
+1. **测试后端核心流程**:
+   ```bash
+   npx ts-node scripts/test-supabase-flow.ts
+   ```
+   如果看到 `✅ Test Completed`，说明基础环境部署成功。
 
-```bash
-npx ts-node scripts/test-supabase-flow.ts
-```
-
-如果看到 `✅ Test Completed`，说明基础环境部署成功。
+2. **访问 Web 管理后台**:
+   打开浏览器访问 `http://localhost:3001` (使用 Docker 部署时) 或 `http://localhost:3000` (本地开发模式)。
 
 ## 生产环境部署建议
 

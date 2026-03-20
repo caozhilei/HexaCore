@@ -132,23 +132,35 @@ HexaCore/
 
 ### 2. 启动服务
 
+**推荐：使用 Docker Compose 一键启动全栈**
+```bash
+docker-compose up -d --build
+```
+这将启动包括 Supabase 基础设施、Redis、HexaCore 后端网关以及 Web 管理后台在内的所有服务。
+
+**本地开发模式 (手动启动)**:
+
+如果您需要修改代码并实时预览，可以手动启动后端网关和前端应用（请先通过 `docker-compose up -d supabase-db redis kong` 等启动基础依赖）：
+
 **后端网关 (WebSocket)**:
 ```bash
+npm install
 npx ts-node src/server.ts
-# 启动在端口 18790
+# 启动在端口 18789 / 8080
 ```
 
 **前端应用 (Next.js)**:
 ```bash
 cd apps/web
-npx next dev -p 3001
-# 启动在 http://localhost:3001
+npm install
+npm run dev
+# 启动在 http://localhost:3000
 ```
 
 ### 3. 验证运行
-*   访问 `http://localhost:3001/zh/login` 进行登录。
-*   访问 `http://localhost:3001/zh/dashboard` 查看实时统计。
-*   运行 `node scripts/verify-ws.js` 验证网关连接。
+*   通过 Docker 启动访问 `http://localhost:3001/zh/login`，或本地启动访问 `http://localhost:3000/zh/login` 进行登录。
+*   访问 Dashboard 查看实时统计与智能体管理。
+*   运行 `node scripts/verify-ws.js` 验证网关连接（如遇端口问题请检查配置）。
 
 ## 文档资源 (Documentation)
 

@@ -11,7 +11,7 @@ services:
       - "18789:18789"
       - "8080:8080"
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
       - SUPABASE_URL=http://kong:8000
       - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
       - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
@@ -19,8 +19,11 @@ services:
     depends_on:
       - supabase-db
       - redis
-    # For local dev, keep it running
-    command: tail -f /dev/null
+    # To run in dev mode with live reload, uncomment the following lines and the volume mount
+    # command: npx ts-node src/server.ts
+    # volumes:
+    #   - .:/app
+
 
   # Redis Cache & Queue
   redis:
@@ -177,11 +180,18 @@ services:
     build: 
       context: ./apps/web
       dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL:-http://localhost:8000}
+        - NEXT_PUBLIC_SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
     container_name: hexacore-web
     ports:
       - "3001:3000"
     environment:
-      - NEXT_PUBLIC_SUPABASE_URL=http://localhost:8000
+      - NODE_ENV=production
+      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL:-http://localhost:8000}
       - NEXT_PUBLIC_SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - SUPABASE_INTERNAL_URL=http://kong:8000
+      - SUPABASE_URL=http://kong:8000
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
     depends_on:
       - kong
